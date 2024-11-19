@@ -4,7 +4,7 @@ import Retangulo from "../../../public/Retangulo.svg"
 
 export default function Sobre() {
     return (
-        <section className="flex p-28 items-center gap-20">
+        <section className="flex p-32 items-center gap-20">
             <Image src={Industria} alt="Vista de cima de uma industria"/>
             <div>
                 <h2 className="text-5xl font-bold">Sobre Nós</h2>
