@@ -9,6 +9,12 @@ export default function Artigos() {
             <div className="flex justify-center py-5">
                 <Image src={Retangulo} alt="retângulo laranja"/>
             </div>
+            <ul>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+            </ul>
             <Link href="/artigos" className="bg-orange-500 p-3 rounded-full hover:bg-orange-800 text-white">Ver Artigos</Link>
         </section>
     )
