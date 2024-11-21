@@ -12,7 +12,7 @@ export default function Header() {
                 <Link href="/recompensas" className="hover:text-orange-500">Recompensas</Link>
             </nav>
             <div className="flex items-center gap-2 hover:text-orange-500 cursor-pointer">
-                <Image src={UserIcon} alt="Icone de usuário"/>
+                <Image src={UserIcon} alt=""/>
                 <Link href="/login">Fazer login</Link>
             </div>
         </header>

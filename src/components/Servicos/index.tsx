@@ -24,7 +24,7 @@ export default function Servicos() {
                         <Image src={Quiz} alt="cidade com varias luzes azul"/>
                     </div>
                     <h3 className="text-2xl font-bold py-4">Quiz Interativo</h3>
-                    <p>Participe do nosso quiz, pontue acima de 80% e ganhe prêmios exclusivos relacionados ao tema.</p>
+                    <p>Participe do nosso quiz, pontue bem e junte pontos para ganhar prêmios exclusivos.</p>
                 </li>
                 <li className="w-1/3">
                     <div className="flex justify-center">
