@@ -1,7 +1,7 @@
 import Image from "next/image";
 import BannerImg from "./assets/Banner.png"
 import Retangulo from "../../../public/Retangulo.svg"
-import Link from "next/link";
+import Link from "next/link"
 
 export default function Banner() {
     return (
@@ -18,7 +18,9 @@ export default function Banner() {
                     <Image src={Retangulo} alt="retângulo laranja"/>
                 </div>
                 <p className="text-xl mb-10">Descubra caminhos para um amanhã mais verde</p>
-                <Link href="/quiz" className="bg-orange-500 p-3 rounded-full hover:bg-orange-800">Iniciar Quiz</Link>
+                <Link href="/quiz" className="bg-orange-500 p-3 rounded-full hover:bg-orange-800">
+                    Iniciar Quiz
+                </Link>
             </div>
         </section>
     )

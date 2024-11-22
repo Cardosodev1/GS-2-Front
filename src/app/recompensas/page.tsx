@@ -1,40 +1,72 @@
+"use client"
+
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import Image from "next/image";
 import Retangulo from "../../../public/Retangulo.svg"
-import Medalha from "../../../public/Medalha.svg"
-import Presente from "../../../public/Presente.svg"
+import { useEffect, useState } from "react";
+
+interface RecompensasProps {
+    id: number
+    descricao: string
+    pontosNecessarios: number
+}
+
+const imagemMap: Record<number, string> = {
+    0: "/Ifood.svg",
+    1: "/Uber.svg",
+    2: "/Amazon.svg"
+}
 
 export default function RecompensasPage() {
+    const [recompensas, setRecompensas] = useState<RecompensasProps[]>([])
+    const [loading, setLoading] = useState(true)
+
+    useEffect(() => {
+        const fetchRecompensas = async () => {
+            try {
+                const response = await fetch("http://localhost:8080/recompensas")
+                if (!response.ok) {
+                    throw new Error("Erro ao buscar os recompensas")
+                }
+                const data: RecompensasProps[] = await response.json()
+                setRecompensas(data)
+            } catch (error) {
+                console.error(error)
+            } finally {
+                setLoading(false)
+            }
+        }
+
+        fetchRecompensas()
+    }, [])
+
+    if (loading) {
+        return <p>Carregando...</p>
+    }
+
     return(
         <>
             <Header />
-            <div className="flex flex-col items-center py-16">
+            <div className="flex flex-col items-center pt-16">
                 <h1 className="text-4xl font-bold">Recompensas</h1>
                 <div className="flex justify-center py-5">
                     <Image src={Retangulo} alt="retângulo laranja"/>
                 </div>
             </div>
-            <section className="flex justify-center gap-52">
-                <div className="flex gap-5 items-center">
-                    <Image src={Medalha} alt=""/>
-                    <div className="flex flex-col items-center gap-2">
-                        <h3 className="text-xl font-medium">Pontos disponiveis</h3>
-                        <p className="text-3xl font-bold">0</p>
-                    </div>
-                </div>
-                <div className="flex gap-5 items-center">
-                    <Image src={Presente} alt=""/>
-                    <div className="flex flex-col items-center gap-2">
-                        <h3 className="text-xl font-medium">Resgates efetuados</h3>
-                        <p className="text-3xl font-bold">0</p>
-                    </div>
-                </div>
-            </section>
-            <ul>
-                <li></li>
-                <li></li>
-                <li></li>
+            <ul className="flex justify-center gap-10 my-10 h-screen">
+                {recompensas.map((recompensa, index) => (
+                    <li key={recompensa.id || index} className="bg-white shadow-md flex flex-col items-center h-64">
+                        <Image
+                            src={imagemMap[index]}
+                            alt=""
+                            width={250}
+                            height={200}
+                        />
+                        <h3 className="font-medium py-5">{recompensa.descricao}</h3>
+                        <p>{recompensa.pontosNecessarios} pontos</p>
+                    </li>
+                ))}
             </ul>
             <Footer />
         </>

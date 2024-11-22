@@ -26,14 +26,21 @@ export default function Header() {
                 <Link href="/quiz" className="hover:text-orange-500">Quiz</Link>
                 <Link href="/recompensas" className="hover:text-orange-500">Recompensas</Link>
             </nav>
-                <Link href="/login" className="flex items-center gap-2 hover:text-orange-500 cursor-pointer">
-                    <Image src={UserIcon} alt=""/>
-                    {isAuthenticated ? (
-                        <p className="text-sm md:text-base cursor-pointer" onClick={handleLogout}>Sair</p>
-                    ) : (
-                        <Link href="/login" className="text-sm md:text-base">Fazer login</Link>
-                    )}
-                </Link>
+            <div className="flex items-center gap-2">
+                <Image src={UserIcon} alt="Ícone de usuário" />
+                {isAuthenticated ? (
+                    <button
+                        onClick={handleLogout}
+                        className="text-sm md:text-base cursor-pointer hover:text-orange-500"
+                    >
+                        Sair
+                    </button>
+                ) : (
+                    <Link href="/login" className="text-sm md:text-base hover:text-orange-500">
+                        Fazer login
+                    </Link>
+                )}
+            </div>
         </header>
     )
 }
