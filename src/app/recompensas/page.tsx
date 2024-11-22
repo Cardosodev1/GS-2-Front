@@ -5,6 +5,7 @@ import Header from "@/components/Header";
 import Image from "next/image";
 import Retangulo from "../../../public/Retangulo.svg"
 import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 
 interface RecompensasProps {
     id: number
@@ -19,6 +20,15 @@ const imagemMap: Record<number, string> = {
 }
 
 export default function RecompensasPage() {
+    const router = useRouter()
+
+    useEffect(() => {
+        const token = localStorage.getItem('token')
+        if (!token) {
+            router.push('/login')
+        }
+    }, [router])
+
     const [recompensas, setRecompensas] = useState<RecompensasProps[]>([])
     const [loading, setLoading] = useState(true)
 

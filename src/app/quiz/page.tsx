@@ -4,7 +4,8 @@ import Header from "@/components/Header"
 import Footer from "@/components/Footer"
 import Image from "next/image"
 import Retangulo from "../../../public/Retangulo.svg"
-import { useState } from "react"
+import { useEffect, useState } from "react"
+import { useRouter } from "next/navigation"
 
 interface Pergunta {
   id: number
@@ -72,6 +73,15 @@ const perguntas: Pergunta[] = [
 ]
 
 export default function QuizPage() {
+    const router = useRouter()
+
+    useEffect(() => {
+        const token = localStorage.getItem('token')
+        if (!token) {
+            router.push('/login')
+        }
+    }, [router])
+
   const [respostas, setRespostas] = useState<{ [key: number]: number | null }>({})
   const [pontuacao, setPontuacao] = useState(0)
 
